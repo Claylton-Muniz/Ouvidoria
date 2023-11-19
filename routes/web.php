@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ACL\RoleController;
 use App\Http\Controllers\ACL\PermissionController;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::get('roles/load', [RoleController::class, 'loadDataTable'])->name('roles.load');
     Route::get('roles/{role}/permissions', [RoleController::class, 'permissions'])->name('roles.permissions');
     Route::put('roles/{role}/permissions/sync', [RoleController::class, 'permissionsSync'])->name('roles.permissionsSync');
-    Route::resource('roles', RoleController::class);    
+    Route::resource('roles', RoleController::class);
+
     /** Permissões */
     Route::get('permissions/load', [PermissionController::class, 'loadDataTable'])->name('permissions.load');
     Route::resource('permissions', PermissionController::class);
+
+    /** Ouvidoria */
+    /** Index */
+    Route::get('ouvidoria', [FormsController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';
