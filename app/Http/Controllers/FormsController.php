@@ -9,4 +9,8 @@ class FormsController extends Controller
     public function index() {
         return view('ouvidoria.index');
     }
+
+    public function forms() {
+        return view('ouvidoria.forms');
+    }
 }

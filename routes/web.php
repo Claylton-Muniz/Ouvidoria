@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     /** Ouvidoria */
     /** Index */
     Route::get('ouvidoria', [FormsController::class, 'index']);
+    Route::get('ouvidoria/forms', [FormsController::class, 'forms']);
+
 });
 
 require __DIR__.'/auth.php';

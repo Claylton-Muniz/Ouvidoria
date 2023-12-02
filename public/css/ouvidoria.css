@@ -1,0 +1,15 @@
+#dataTableForms {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#dataTableForms th, #dataTableForms td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#title {
+    background-color: #f2f2f2;
+}
