@@ -41,9 +41,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('permissions', PermissionController::class);
 
     /** Ouvidoria */
+
     /** Index */
     Route::get('ouvidoria', [FormsController::class, 'index']);
     Route::get('ouvidoria/forms', [FormsController::class, 'forms']);
+
+    /** Forms */
+
+    /** Create Forms */
+    Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);
+    Route::post('ouvidoria/forms/store', [FormsController::class, 'store']);
+
 
 });
 

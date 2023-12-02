@@ -25,7 +25,6 @@
         <div class="table-responsive">
             <table class="table table-bordered table-sm" id="dataTableForms" cellspacing="0">
                 <tr id="title">
-                    <th>Id.</th>
                     <th>Servidor</th>
                     <th>Tipo de formulário</th>
                     <th>Data</th>
@@ -33,12 +32,11 @@
                     <th>Editar</th>
                 </tr>
                 <tr>
-                    <td>01</td>
                     <td>Claylton Muniz</td>
                     <td>Padre Cícero</td>
                     <td>28/11/23</td>
                     <td>Paulo Vitor</td>
-                    <td>lap.</td>
+                    <td><x-icon name="pencil" cor="#3D63D3" /></td>
                 </tr>
             </table>
         </div>

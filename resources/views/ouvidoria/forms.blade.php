@@ -11,13 +11,28 @@
 
     <div class="select-forms">
         <a href="#">
-            <input class="btn btn-primary" type="button" value="Prefeitura">
+            <button class="btn btn-primary" type="button">
+                <div class="inline-container">
+                    <x-icon name="building" cor="#ffffff" />
+                    <span>Prefeitura</span>
+                </div>
+            </button>
         </a>
         <a href="#">
-            <input class="btn btn-primary" type="button" value="Pe. Cicero">
+            <button class="btn btn-primary" type="button">
+                <div class="inline-container">
+                    <x-icon name="hat" cor="#ffffff" />
+                    <span>Pe. Cicero</span>
+                </div>
+            </button>
         </a>
-        <a href="#">
-            <input class="btn btn-primary" id="createForm" type="button" value="+ Criar">
+        <a href="forms/create">
+            <button class="btn btn-primary" id="createForm" type="button">
+                <div class="inline-container">
+                    <x-icon name="plus" cor="#ffffff" />
+                    <span>Criar</span>
+                </div>
+            </button>
         </a>
     </div>
 @endsection
