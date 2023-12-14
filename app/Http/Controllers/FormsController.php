@@ -14,6 +14,8 @@ class FormsController extends Controller
         return view('ouvidoria.forms');
     }
 
+
+
     public function create() {
         return view('ouvidoria.create');
     }
@@ -24,7 +26,7 @@ class FormsController extends Controller
         $num = $lastNumber + 1;
 
         $nameForm = 'new_form_' . $num . '.blade.php';
-        $formPath = resource_path('views/ouvidoria/forms/' . $nameForm);
+        $formPath = resource_path('views/ouvidoria/new_forms/' . $nameForm);
 
         $content = <<<EOD
         @extends('layouts.master')
@@ -58,7 +60,7 @@ class FormsController extends Controller
     }
 
     private function getLastNumber() {
-        $files = scandir(resource_path('views/ouvidoria/forms/'));
+        $files = scandir(resource_path('views/ouvidoria/new_forms/'));
         $formFiles = preg_grep('/^new_form_\d+\.blade\.php$/', $files);
 
         if (empty($formFiles)) {
@@ -71,6 +73,10 @@ class FormsController extends Controller
         }, $formFiles);
 
         return max($formNumbers);
+    }
+
+    public function formPrefeitura() {
+        return view('ouvidoria.forms.formPrefeitura');
     }
 
 }

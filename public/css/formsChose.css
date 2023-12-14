@@ -1,0 +1,33 @@
+.select-forms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+#createForm {
+    position: fixed;
+    bottom: 85px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.inline-container {
+    display: flex;
+    align-items: center;
+}
+
+.inline-container span {
+    margin-left: 10px;
+}
