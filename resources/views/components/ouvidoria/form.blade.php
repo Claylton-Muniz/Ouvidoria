@@ -10,8 +10,9 @@
                 <label for="datanascimento" class="form_label" id="label_sec">Data de Nascimento</label>
                 <input type="text" name="nome" class="form_pri" id="nome" placeholder="Nome">
                 <input type="date" name="datanascimento" class="form_sec" id="datanascimento"
-                    placeholder="Data de Nascimento">
+                placeholder="DD/MM/YYYY" pattern="\d{2}/\d{2}/\d{4}" >
             </div>
+
 
             <div class="form_grupo">
                 <label for="e-mail" class="form_label">Email</label>
@@ -27,29 +28,32 @@
 
             <div class="form_grupo">
                 <span class="legenda">Sexo:</span>
-
-                <div class="radio-btn">
+                <div class="radio-form">
                     <input type="radio" class="form_new_input" id="masculino" name="sexo" value="Masculino">
-                    <label for="masculino" class="radio_label form_label"> <span class="radio_new_btn"></span>
-                        Masculino</label>
+                    <label for="masculino" class="radio_label form_label">
+                        <span class="radio_new_btn"></span>
+                        Masculino
+                    </label>
                 </div>
-                <div class="radio-btn">
+                <div class="radio-form">
                     <input type="radio" class="form_new_input" id="feminino" name="sexo" value="Feminino">
-                    <label for="feminino" class="radio_label form_label"> <span class="radio_new_btn"></span>
-                        Feminino</label>
+                    <label for="feminino" class="radio_label form_label">
+                        <span class="radio_new_btn"></span>
+                        Feminino
+                    </label>
                 </div>
             </div>
 
             {!! $slot !!}
 
             <div class="form_message">
-                <label for="message" class="form_message_label"> Digite aqui sua sua mensagem:</label>
+                <label for="message" class="form_message_label"> Digite aqui seu comentário:</label>
                 <textarea name="mensagem" id="message" cols="30" rows="3" class="form_input message_input"></textarea>
             </div>
 
             <div class="submit">
                 <input type="hidden" name="acao" value="enviar">
-                <button type="submit" name="Submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" name="Submit" class="btn btn-primary">Enviar</button>
             </div>
         </form>
     </div>

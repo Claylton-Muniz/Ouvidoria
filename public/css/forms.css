@@ -85,6 +85,15 @@
     font-weight: bold;
 }
 
+.radio-form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.radio-btn {
+    align-items: center;
+}
+
 .submit {
     float: right;
     display: block;
