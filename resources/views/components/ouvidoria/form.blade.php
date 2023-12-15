@@ -7,23 +7,17 @@
         <form class="form" action="#" method="POST">
             <div class="form_grupo">
                 <label for="nome" class="form_label">Nome</label>
-                <input type="text" name="nome" class="form_input" id="nome" placeholder="Nome">
-            </div>
-
-            <div class="form_grupo">
-                <label for="datanascimento" class="form_label">Data de Nascimento</label>
-                <input type="date" name="datanascimento" class="form_input" id="datanascimento"
+                <label for="datanascimento" class="form_label" id="label_sec">Data de Nascimento</label>
+                <input type="text" name="nome" class="form_pri" id="nome" placeholder="Nome">
+                <input type="date" name="datanascimento" class="form_sec" id="datanascimento"
                     placeholder="Data de Nascimento">
             </div>
 
             <div class="form_grupo">
                 <label for="e-mail" class="form_label">Email</label>
-                <input type="email" name="email" class="form_input" id="email" placeholder="seuemail@email.com">
-            </div>
-
-            <div class="form_grupo">
-                <label for="telefone" class="form_label">Telefone</label>
-                <input type="tel" name="telefone" class="form_input" id="telefone" placeholder="Telefone">
+                <label for="telefone" class="form_label" id="label_sec">Telefone</label>
+                <input type="email" name="email" class="form_pri" id="email" placeholder="seuemail@email.com">
+                <input type="tel" name="telefone" class="form_sec" id="telefone" placeholder="Telefone">
             </div>
 
             <div class="form_grupo">
@@ -46,6 +40,8 @@
                 </div>
             </div>
 
+            {!! $slot !!}
+
             <div class="form_message">
                 <label for="message" class="form_message_label"> Digite aqui sua sua mensagem:</label>
                 <textarea name="mensagem" id="message" cols="30" rows="3" class="form_input message_input"></textarea>
@@ -53,7 +49,7 @@
 
             <div class="submit">
                 <input type="hidden" name="acao" value="enviar">
-                <button type="submit" name="Submit" class="submit_btn">Cadastrar</button>
+                <button type="submit" name="Submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>
     </div>

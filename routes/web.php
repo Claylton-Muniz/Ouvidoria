@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     /** Forms */
     Route::get('ouvidoria/forms/prefeitura', [FormsController::class, 'formPrefeitura']);
+    Route::get('ouvidoria/forms/peCicero', [FormsController::class, 'formPeCicero']);
 
     /** Create Forms */
     Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);

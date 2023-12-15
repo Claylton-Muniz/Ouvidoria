@@ -79,4 +79,8 @@ class FormsController extends Controller
         return view('ouvidoria.forms.formPrefeitura');
     }
 
+    public function formPeCicero() {
+        return view('ouvidoria.forms.formPeCicero');
+    }
+
 }
