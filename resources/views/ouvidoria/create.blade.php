@@ -10,7 +10,7 @@
     <h1 class="h3 mb-2 text-gray-800">Criar Formulário</h1>
 
     @if (request()->has('num-questions'))
-        <form action="store" method="post">
+        <form action="{{ route('create.form') }}" method="post">
             @csrf
 
             <div class="name">

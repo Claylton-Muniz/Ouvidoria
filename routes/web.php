@@ -52,7 +52,10 @@ Route::middleware('auth')->group(function () {
 
     /** Create Forms */
     Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);
-    Route::post('ouvidoria/forms/store', [FormsController::class, 'store']);
+    Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
+
+    /** Send forms */
+    Route::post('ouvidoria/forms/send', [FormsController::class, 'send'])->name('send.form');
 
 
 });

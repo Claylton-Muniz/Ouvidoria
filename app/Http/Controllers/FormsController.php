@@ -6,20 +6,30 @@ use Illuminate\Http\Request;
 
 class FormsController extends Controller
 {
-    public function index() {
-        return view('ouvidoria.index');
+    // Páginas
+    public function index(OuvidoriaForms $forms) {
+        $forms = $forms->all();
+
+        return view('ouvidoria.index', compact('forms'));
     }
 
     public function forms() {
         return view('ouvidoria.forms');
     }
 
-
-
     public function create() {
         return view('ouvidoria.create');
     }
 
+    public function formPrefeitura() {
+        return view('ouvidoria.forms.formPrefeitura');
+    }
+
+    public function formPeCicero() {
+        return view('ouvidoria.forms.formPeCicero');
+    }
+
+    // Funcionalidades
     public function store(Request $request) {
 
         $lastNumber = $this->getLastNumber();
@@ -73,14 +83,6 @@ class FormsController extends Controller
         }, $formFiles);
 
         return max($formNumbers);
-    }
-
-    public function formPrefeitura() {
-        return view('ouvidoria.forms.formPrefeitura');
-    }
-
-    public function formPeCicero() {
-        return view('ouvidoria.forms.formPeCicero');
     }
 
 }

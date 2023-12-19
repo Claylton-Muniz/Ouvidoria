@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('user_name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->integer('user_status');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

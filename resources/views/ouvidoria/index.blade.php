@@ -31,13 +31,15 @@
                     <th>Participante</th>
                     <th>Editar</th>
                 </tr>
-                <tr>
-                    <td>Claylton Muniz</td>
-                    <td>Padre Cícero</td>
-                    <td>28/11/23</td>
-                    <td>Paulo Vitor</td>
-                    <td><x-icon name="pencil" cor="#3D63D3" /></td>
-                </tr>
+                @foreach ($forms as $form)
+                    <tr>
+                        <td>{{ $form->servidor }}</td>
+                        <td>{{ $form->Tipo_form }}</td>
+                        <td>{{ $form->servidor }}</td>
+                        <td>{{ $form->entrevistado }}</td>
+                        <td><x-icon name="pencil" cor="#3D63D3" /></td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
