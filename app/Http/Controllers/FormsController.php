@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use App\Models\OuvidoriaForms;
 
 class FormsController extends Controller
 {
     // Páginas
-    public function index(OuvidoriaForms $forms) {
-        $forms = $forms->all();
-
-        return view('ouvidoria.index', compact('forms'));
-    }
 
     public function forms() {
         return view('ouvidoria.forms');
@@ -30,6 +27,43 @@ class FormsController extends Controller
     }
 
     // Funcionalidades
+    public function index(OuvidoriaForms $form) {
+        $forms = $form->all();
+
+        return view('ouvidoria.index', compact('forms'));
+    }
+
+    public function save(Request $request) {
+        $request->validate([
+            'servidor' => 'required|string',
+            'entrevistado' => 'nullable|string',
+            'tipo_form' => 'required|string',
+            'data_atual' => 'nullable|date',
+            'data_nasc' => 'nullable|date',
+            'email' => 'nullable|email',
+            'telefone' => 'nullable|string',
+            'endereco' => 'nullable|string',
+            'sexo' =>  'nullable|in:Masculino,Feminino,Outro,PND',
+            'mensagem' => 'nullable|string',
+        ]);
+
+        $data = $request->except('_token');
+
+        $data['data_atual'] = Carbon::now()->format('d-m-y');
+
+        $data['tipo_form'] = $request->input('tipo_form', 'valor');
+        $data['entrevistado'] = $data['entrevistado'] ?? 'anônimo';
+        $data['email'] = $data['email'] ?? '';
+        $data['data_nasc'] = $data['data_nasc'] ?? null;
+        $data['telefone'] = $data['telefone'] ?? '';
+        $data['endereco'] = $data['endereco'] ?? '';
+        $data['mensagem'] = $data['mensagem'] ?? '';
+
+        $form = OuvidoriaForms::create($data);
+        // dd($form);
+        return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
+    }
+
     public function store(Request $request) {
 
         $lastNumber = $this->getLastNumber();

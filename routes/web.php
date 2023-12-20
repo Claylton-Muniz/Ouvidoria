@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
 
     /** Send forms */
-    Route::post('ouvidoria/forms/send', [FormsController::class, 'send'])->name('send.form');
+    Route::post('ouvidoria/forms/save', [FormsController::class, 'save'])->name('send.form');
 
 
 });

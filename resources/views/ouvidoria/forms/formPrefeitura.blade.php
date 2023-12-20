@@ -6,6 +6,8 @@
     <h1 class="h3 mb-2 text-gray-800">Formulário da prefeitura</h1>
 
     <form class="form" action="{{ route('send.form') }}" method="POST">
+        @csrf()
+        <input type="hidden" name="tipo_form" id="tipo_form" value="Prefeitura">
         <x-ouvidoria.form>
             <x-ouvidoria.question>
                 1 - Qual sua opinião sobre a infraestrutura municipal?

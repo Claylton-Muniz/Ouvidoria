@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('ouvidoria_forms', function (Blueprint $table) {
             $table->id();
             $table->string('servidor');
-            $table->string('entrevistado');
+            $table->string('entrevistado')->nullable();
             $table->string('tipo_form');
-            $table->date('data_atual')->nullable();
-            $table->date('data_nasc');
-            $table->string('email');
-            $table->string('telefone');
-            $table->string('endereco');
-            $table->enum('sexo', ['Masculino', 'Feminino', 'Outro', 'Prefiro não informar']);
-            $table->text('mensagem');
+            $table->date('data_atual');
+            $table->date('data_nasc')->nullable();
+            $table->string('email')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('endereco')->nullable();
+            $table->enum('sexo', ['Masculino', 'Feminino', 'Outro', 'Prefiro não informar'])->nullable();
+            $table->text('mensagem')->nullable();
             $table->timestamps();
         });
     }
