@@ -44,11 +44,10 @@ Route::middleware('auth')->group(function () {
 
     /** Index */
     Route::get('ouvidoria', [FormsController::class, 'index']);
-    Route::get('ouvidoria/forms', [FormsController::class, 'forms']);
 
     /** Forms */
-    Route::get('ouvidoria/forms/prefeitura', [FormsController::class, 'formPrefeitura']);
-    Route::get('ouvidoria/forms/peCicero', [FormsController::class, 'formPeCicero']);
+    Route::get('ouvidoria/forms', [FormsController::class, 'forms']);
+    Route::get('ouvidoria/forms/form/{typ}', [FormsController::class, 'form']);
 
     /** Create Forms */
     Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);

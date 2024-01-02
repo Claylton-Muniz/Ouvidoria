@@ -31,12 +31,12 @@
                     <th>Participante</th>
                     <th>Editar</th>
                 </tr>
-                @foreach ($forms as $form)
+                @foreach ($datas as $data)
                     <tr>
-                        <td>{{ $form->servidor }}</td>
-                        <td>{{ $form->tipo_form }}</td>
-                        <td>{{ \Carbon\Carbon::parse($form->data_atual)->format('d/m/Y') }}</td>
-                        <td>{{ $form->entrevistado }}</td>
+                        <td>{{ $data->servidor }}</td>
+                        <td>{{ $data->tipo_form }}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->data_atual)->format('d/m/Y') }}</td>
+                        <td>{{ $data->entrevistado }}</td>
                         <td><x-icon name="pencil" cor="#3D63D3" /></td>
                     </tr>
                 @endforeach

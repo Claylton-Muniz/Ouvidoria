@@ -10,22 +10,20 @@
     <h1 class="h3 mb-2 text-gray-800">Formulários</h1>
 
     <div class="select-forms">
-        <a href="forms/prefeitura">
-            <button class="btn btn-primary" type="button">
-                <div class="inline-container">
-                    <x-icon name="building" cor="#ffffff" />
-                    <span>Prefeitura</span>
-                </div>
-            </button>
-        </a>
-        <a href="forms/peCicero">
-            <button class="btn btn-primary" type="button">
-                <div class="inline-container">
-                    <x-icon name="hat" cor="#ffffff" />
-                    <span>Pe. Cicero</span>
-                </div>
-            </button>
-        </a>
+        @php
+            $i = 0;
+        @endphp
+        @foreach ($forms as $form)
+            <a href="forms/form/{{$i++}}">
+                <button class="btn btn-primary" type="button">
+                    <div class="inline-container">
+                        <x-icon name="{{$form->icon}}" cor="#ffffff" />
+                        <span>{{$form->nome}}</span>
+                    </div>
+                </button>
+            </a>
+        @endforeach
+
         <a href="forms/create">
             <button class="btn btn-primary" id="createForm" type="button">
                 <div class="inline-container">

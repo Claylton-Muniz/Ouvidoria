@@ -10,7 +10,7 @@
     <h1 class="h3 mb-2 text-gray-800">Criar Formulário</h1>
 
     @if (request()->has('num-questions'))
-        <form action="{{ route('create.form') }}" method="post">
+        {{-- <form action="{{ route('create.form') }}" method="post">
             @csrf
 
             <div class="name">
@@ -35,16 +35,16 @@
             @endphp
 
             <button type="submit">Criar Formulário</button>
-        </form>
+        </form> --}}
     @else
-            <form>
+            {{-- <form>
                 <div class="quant">
                     <input class="button-inc" id="decrement" type="button" onclick="stepper(this)" value="-">
                     <input type="number" name="num-questions" min="1" max="15" step="1" value="1" id="num-questions" readonly>
                     <input class="button-inc" id="increment" type="button" onclick="stepper(this)" value="+">
                 </div>
                 <button class="btn btn-primary" id="confirm" type="submit">Confirmar</button>
-            </form>
+            </form> --}}
     @endif
 
     <script src="{{ asset('js/incremment.js') }}"></script>

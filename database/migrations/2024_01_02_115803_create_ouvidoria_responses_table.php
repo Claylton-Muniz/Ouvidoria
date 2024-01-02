@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ouvidoria_forms', function (Blueprint $table) {
+        Schema::create('ouvidoria_responses', function (Blueprint $table) {
             $table->id();
             $table->string('servidor');
             $table->string('entrevistado')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ouvidoria_forms');
+        Schema::dropIfExists('ouvidoria_responses');
     }
 };
