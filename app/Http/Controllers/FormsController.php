@@ -39,6 +39,10 @@ class FormsController extends Controller
         return view('ouvidoria.create');
     }
 
+    public function questions() {
+        return view('ouvidoria.questions');
+    }
+
     /** Funcionalidades */
 
     public function save(Request $request) {
@@ -67,13 +71,42 @@ class FormsController extends Controller
         $data['endereco'] = $data['endereco'] ?? '';
         $data['mensagem'] = $data['mensagem'] ?? '';
 
+        // dd($data);
         OuvidoriaResponse::create($data);
-        // dd($form);
+
         return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
     }
 
-    // public function store() {
+    public function store(Request $request) {
+        $request->validate([
+            'nome' => 'required|string',
+            'icon' => 'nullable|string'
+        ]);
 
-    // }
+        $data = $request->except('_token');
+
+        OuvidoriaForms::create($data);
+
+        return redirect('ouvidoria/forms/questions')->with('success', 'Dados enviados com sucesso!');
+    }
+
+    public function storeQuestion(Request $request) {
+        $request->validate([
+            'question.*' => 'required|string'
+        ]);
+
+        $maxFormId = OuvidoriaForms::max('id');
+
+        $questions = $request->input('question');
+
+        foreach ($questions as $question) {
+            OuvidoriaQuestions::create([
+                'form_id' => $maxFormId,
+                'question' => $question
+            ]);
+        }
+
+        return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
+    }
 
 }

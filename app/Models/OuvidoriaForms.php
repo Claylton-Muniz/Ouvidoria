@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OuvidoriaForms extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nome',
+        'icon'
+    ];
 }

@@ -51,10 +51,12 @@ Route::middleware('auth')->group(function () {
 
     /** Create Forms */
     Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);
-    Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
+    Route::get('ouvidoria/forms/questions', [FormsController::class, 'questions']);
 
     /** Send forms */
     Route::post('ouvidoria/forms/save', [FormsController::class, 'save'])->name('send.form');
+    Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
+    Route::post('ouvidoria/forms/store-questions', [FormsController::class, 'storeQuestion'])->name('saveQuestions.form');
 
 
 });

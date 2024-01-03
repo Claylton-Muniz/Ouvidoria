@@ -1,28 +1,118 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    /* font-family: "Roboto Mono", monospace; */
-    font-weight: 600;
-}
-
-.name {
+.container_form {
+    position: relative;
+    width: 80%;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
+    background:#ffffff;
+    box-shadow: 1px 0px 1.2px 0px #e3e3e3;
+    border-radius:3px;
+    padding:1em;
+    padding-bottom: 40px;
+    margin-bottom: 10px;
 }
 
-.name input {
-    border-radius: 5px;
+.form_name {
+    width: 25%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    position: relative;
 }
 
-.quest {
-    display: flex;
-    flex-direction: column;
+.form_grupo {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    position: relative;
 }
 
-.quest input {
-    border-radius: 5px;
+.form_grupo .legenda {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.form_grupo {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#label_sec{
+    padding-left: 54%;
+}
+
+.form_pri {
+    font-size: 16px;
+    font-family: inherit;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px #f2f2f2 solid;
+    background: #fdfdfd;
+    outline: none;
+    width: 60%;
+    transition: all 0.3s;
+}
+
+.form_sec {
+    font-size: 16px;
+    font-family: inherit;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px #f2f2f2 solid;
+    background: #fdfdfd;
+    outline: none;
+    width: 39%;
+    transition: all 0.3s;
+}
+
+.form_input {
+    font-size: 16px;
+    font-family: inherit;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px #f2f2f2 solid;
+    background: #fdfdfd;
+    outline: none;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.form_message,
+.form_message .message_input {
+    width: 100%;
+    float:left;
+}
+
+.form_message_label {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.radio-form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.radio-btn {
+    align-items: center;
+}
+
+.submit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .quant {

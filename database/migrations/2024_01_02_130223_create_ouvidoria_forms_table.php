@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ouvidoria_forms', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

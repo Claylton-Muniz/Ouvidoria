@@ -57,8 +57,6 @@
         </div>
 
         <div class="submit">
-            <input type="hidden" name="acao" value="enviar">
-            <a href=""></a>
             <button type="submit" name="Submit" class="btn btn-primary">Enviar</button>
         </div>
     </div>
