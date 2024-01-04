@@ -37,7 +37,11 @@
                         <td>{{ $forms[$data->tipo_form-1]->nome }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->data_atual)->format('d/m/Y') }}</td>
                         <td>{{ $data->entrevistado }}</td>
-                        <td><x-icon name="pencil" cor="#3D63D3" /></td>
+                        <td>
+                            <a href="ouvidoria/form/{{$data->tipo_form-1}}/{{$data->id}}">
+                                <x-icon name="pencil" cor="#3D63D3" />
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </table>

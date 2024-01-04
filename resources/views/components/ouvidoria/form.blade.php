@@ -3,18 +3,19 @@
 </head>
 
 <body>
+
     <div class="container_form">
         <div class="form_grupo">
             <label for="servidor" class="form_label">Servidor responsável</label>
             <input type="text" name="servidor" class="form_input" id="servidor"
-            placeholder="Servidor" required>
+            placeholder="Servidor" value="{{$servidor}}" required>
         </div>
 
         <div class="form_grupo">
             <label for="nome" class="form_label">Nome</label>
             <label for="datanascimento" class="form_label" id="label_sec">Data de Nascimento</label>
-            <input type="text" name="entrevistado" class="form_pri" id="entrevistado" placeholder="Nome">
-            <input type="date" name="data_nasc" class="form_sec" id="datanascimento"
+            <input type="text" name="entrevistado" class="form_pri" id="entrevistado" value="{{$nome}}" placeholder="Nome">
+            <input type="date" name="data_nasc" class="form_sec" id="datanascimento" value="{{$data}}"
             placeholder="DD/MM/YYYY" pattern="\d{2}/\d{2}/\d{4}" >
         </div>
 
@@ -22,13 +23,13 @@
         <div class="form_grupo">
             <label for="e-mail" class="form_label">Email</label>
             <label for="telefone" class="form_label" id="label_sec">Telefone</label>
-            <input type="email" name="email" class="form_pri" id="email" placeholder="seuemail@email.com">
-            <input type="tel" name="telefone" class="form_sec" id="telefone" placeholder="Telefone">
+            <input type="email" name="email" class="form_pri" id="email" value="{{$email}}" placeholder="seuemail@email.com">
+            <input type="tel" name="telefone" class="form_sec" id="telefone" value="{{$telefone}}" placeholder="Telefone">
         </div>
 
         <div class="form_grupo">
             <label for="endereco" class="form_label">Endereço</label>
-            <input type="text" name="endereco" class="form_input" id="endereco" placeholder="Endereço">
+            <input type="text" name="endereco" class="form_input" id="endereco" value="{{$endereco}}" placeholder="Endereço">
         </div>
 
         <div class="form_grupo">

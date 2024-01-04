@@ -14,7 +14,7 @@
             $i = 0;
         @endphp
         @foreach ($forms as $form)
-            <a href="forms/form/{{$i++}}">
+            <a href="form/{{$i++}}/new">
                 <button class="btn btn-primary" type="button">
                     <div class="inline-container">
                         <x-icon name="{{$form->icon}}" cor="#ffffff" />

@@ -26,15 +26,26 @@ class FormsController extends Controller
         return view('ouvidoria.forms', compact('forms'));
     }
 
-    public function form(Request $r, OuvidoriaForms $form, OuvidoriaQuestions $question) {
+    public function form(Request $r, OuvidoriaForms $form, OuvidoriaQuestions $question, OuvidoriaResponse $info) {
         $data = [
-            'typ' => $r->typ
+            'typ' => $r->typ,
+            'id' => $r->id
         ];
 
         $forms = $form->all();
         $questions = $question->all();
 
-        return view('ouvidoria.form', $data, compact('forms', 'questions'));
+        if ($data['id'] === 'new') {
+            return view('ouvidoria.form', $data, compact('forms', 'questions'));
+        } else {
+            $data['id'] = intval($data['id']);
+            $id = $data['id'] - 1;
+            $infos = $info->all();
+            $inform = $infos[$id];
+
+            // dd($infos);
+            return view('ouvidoria.form', $data, compact('forms', 'questions', 'inform'));
+        }
     }
 
     public function create() {
