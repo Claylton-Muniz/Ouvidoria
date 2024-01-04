@@ -7,14 +7,14 @@
 
     <form class="form" action="{{ route('send.form') }}" method="POST">
         @csrf()
-        <input type="hidden" name="tipo_form" id="tipo_form" value="{{$forms[$typ]->nome}}">
+        <input type="hidden" name="tipo_form" id="tipo_form" value="{{$typ+1}}">
         <x-ouvidoria.form>
             @php
                 $i = 1;
             @endphp
             @foreach ($questions as $question)
                 @if ($question->form_id == $forms[$typ]->id)
-                    <x-ouvidoria.question>
+                    <x-ouvidoria.question name="info{{$i}}">
                             {{$i++}} - {{$question->question}}
                     </x-ouvidoria.question>
                 @endif

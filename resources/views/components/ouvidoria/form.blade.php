@@ -14,7 +14,7 @@
             <label for="nome" class="form_label">Nome</label>
             <label for="datanascimento" class="form_label" id="label_sec">Data de Nascimento</label>
             <input type="text" name="entrevistado" class="form_pri" id="entrevistado" placeholder="Nome">
-            <input type="date" name="datanascimento" class="form_sec" id="datanascimento"
+            <input type="date" name="data_nasc" class="form_sec" id="datanascimento"
             placeholder="DD/MM/YYYY" pattern="\d{2}/\d{2}/\d{4}" >
         </div>
 

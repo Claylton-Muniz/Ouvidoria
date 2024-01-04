@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('servidor');
             $table->string('entrevistado')->nullable();
-            $table->string('tipo_form');
+            $table->unsignedBigInteger('tipo_form');
             $table->date('data_atual');
             $table->date('data_nasc')->nullable();
             $table->string('email')->nullable();
@@ -24,6 +24,8 @@ return new class extends Migration
             $table->enum('sexo', ['Masculino', 'Feminino', 'Outro', 'Prefiro não informar'])->nullable();
             $table->text('mensagem')->nullable();
             $table->timestamps();
+
+            $table->foreign('tipo_form')->references('id')->on('ouvidoria_forms')->onDelete('cascade');
         });
     }
 

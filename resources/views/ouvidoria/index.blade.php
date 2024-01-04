@@ -34,7 +34,7 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td>{{ $data->servidor }}</td>
-                        <td>{{ $data->tipo_form }}</td>
+                        <td>{{ $forms[$data->tipo_form-1]->nome }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->data_atual)->format('d/m/Y') }}</td>
                         <td>{{ $data->entrevistado }}</td>
                         <td><x-icon name="pencil" cor="#3D63D3" /></td>

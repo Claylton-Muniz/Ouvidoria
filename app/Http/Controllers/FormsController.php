@@ -7,15 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\OuvidoriaForms;
 use App\Models\OuvidoriaQuestions;
 use App\Models\OuvidoriaResponse;
+use App\Models\OuvidoriaQuestionsResponse;
 
 class FormsController extends Controller
 {
     // Páginas
 
-    public function index(OuvidoriaResponse $data) {
+    public function index(OuvidoriaResponse $data, OuvidoriaForms $form) {
         $datas = $data->all();
+        $forms = $form->all();
 
-        return view('ouvidoria.index', compact('datas'));
+        return view('ouvidoria.index', compact('datas', 'forms'));
     }
 
     public function forms(OuvidoriaForms $form) {
@@ -49,7 +51,6 @@ class FormsController extends Controller
         $request->validate([
             'servidor' => 'required|string',
             'entrevistado' => 'nullable|string',
-            'tipo_form' => 'required|string',
             'data_atual' => 'nullable|date',
             'data_nasc' => 'nullable|date',
             'email' => 'nullable|email',
@@ -63,7 +64,8 @@ class FormsController extends Controller
 
         $data['data_atual'] = Carbon::now()->format('d-m-y');
 
-        $data['tipo_form'] = $request->input('tipo_form', 'Erro ao enviar o nome');
+        $data['tipo_form'] = intval($data['tipo_form']);
+
         $data['entrevistado'] = $data['entrevistado'] ?? 'anônimo';
         $data['email'] = $data['email'] ?? '';
         $data['data_nasc'] = $data['data_nasc'] ?? null;
@@ -71,8 +73,26 @@ class FormsController extends Controller
         $data['endereco'] = $data['endereco'] ?? '';
         $data['mensagem'] = $data['mensagem'] ?? '';
 
-        // dd($data);
+        $infos = [];
+        $count = OuvidoriaQuestions::where('form_id', $data['tipo_form'])->count();
+
+        for ($i = 1; $i <= $count; $i++) {
+            $key = 'info' . $i;
+            $infos[$i - 1] = isset($data[$key]) ? $data[$key] : 'não informado';
+        }
+
         OuvidoriaResponse::create($data);
+
+        $maxId = OuvidoriaResponse::max('id');
+        $nQuestion = 1;
+
+        foreach ($infos as $info) {
+            OuvidoriaQuestionsResponse::create([
+                'response_id' => $maxId,
+                'n_question' => $nQuestion++,
+                'info' => $info
+            ]);
+        }
 
         return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
     }
@@ -98,6 +118,7 @@ class FormsController extends Controller
         $maxFormId = OuvidoriaForms::max('id');
 
         $questions = $request->input('question');
+        // dd($questions);
 
         foreach ($questions as $question) {
             OuvidoriaQuestions::create([
