@@ -35,14 +35,14 @@
         <div class="form_grupo">
             <span class="legenda">Sexo:</span>
             <div class="radio-form">
-                <input type="radio" class="form_new_input" id="masculino" name="sexo" value="Masculino">
+                <input type="radio" class="form_new_input" id="masculino" name="sexo" value="Masculino" @if($sexo === 'Masculino') checked @endif>
                 <label for="masculino" class="radio_label form_label">
                     <span class="radio_new_btn"></span>
                     Masculino
                 </label>
             </div>
             <div class="radio-form">
-                <input type="radio" class="form_new_input" id="feminino" name="sexo" value="Feminino">
+                <input type="radio" class="form_new_input" id="feminino" name="sexo" value="Feminino" @if($sexo === 'Feminino') checked @endif>
                 <label for="feminino" class="radio_label form_label">
                     <span class="radio_new_btn"></span>
                     Feminino
@@ -54,7 +54,7 @@
 
         <div class="form_message">
             <label for="message" class="form_message_label"> Digite aqui seu comentário:</label>
-            <textarea name="mensagem" id="message" cols="30" rows="3" class="form_input message_input"></textarea>
+            <textarea name="mensagem" id="message" cols="30" rows="3" class="form_input message_input">{{$mensagem}}</textarea>
         </div>
 
         <div class="submit">

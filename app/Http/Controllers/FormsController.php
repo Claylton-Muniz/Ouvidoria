@@ -26,7 +26,13 @@ class FormsController extends Controller
         return view('ouvidoria.forms', compact('forms'));
     }
 
-    public function form(Request $r, OuvidoriaForms $form, OuvidoriaQuestions $question, OuvidoriaResponse $info) {
+    public function form(
+        Request $r,
+        OuvidoriaForms $form,
+        OuvidoriaQuestions $question,
+        OuvidoriaResponse $info,
+        OuvidoriaQuestionsResponse $infoQuestion
+    ) {
         $data = [
             'typ' => $r->typ,
             'id' => $r->id
@@ -40,11 +46,14 @@ class FormsController extends Controller
         } else {
             $data['id'] = intval($data['id']);
             $id = $data['id'] - 1;
+
             $infos = $info->all();
+
+            $infoQuestions = $infoQuestion->where('response_id', $data['id'])->get();
             $inform = $infos[$id];
 
-            // dd($infos);
-            return view('ouvidoria.form', $data, compact('forms', 'questions', 'inform'));
+            // dd($infoQuestions);
+            return view('ouvidoria.form', $data, compact('forms', 'questions', 'inform', 'infoQuestions'));
         }
     }
 
@@ -73,17 +82,6 @@ class FormsController extends Controller
 
         $data = $request->except('_token');
 
-        $data['data_atual'] = Carbon::now()->format('d-m-y');
-
-        $data['tipo_form'] = intval($data['tipo_form']);
-
-        $data['entrevistado'] = $data['entrevistado'] ?? 'anônimo';
-        $data['email'] = $data['email'] ?? '';
-        $data['data_nasc'] = $data['data_nasc'] ?? null;
-        $data['telefone'] = $data['telefone'] ?? '';
-        $data['endereco'] = $data['endereco'] ?? '';
-        $data['mensagem'] = $data['mensagem'] ?? '';
-
         $infos = [];
         $count = OuvidoriaQuestions::where('form_id', $data['tipo_form'])->count();
 
@@ -92,17 +90,54 @@ class FormsController extends Controller
             $infos[$i - 1] = isset($data[$key]) ? $data[$key] : 'não informado';
         }
 
-        OuvidoriaResponse::create($data);
+        unset($data['Submit']);
 
-        $maxId = OuvidoriaResponse::max('id');
+        $id = isset($data['form_id']) ? intval($data['form_id']) : null;
+        unset($data['form_id']);
+
+        $data['tipo_form'] = intval($data['tipo_form']);
+
+        $data['entrevistado'] = $data['entrevistado'] ?? 'anônimo';
+        $data['email'] = $data['email'] ?? '';
+
+        $data['data_atual'] = Carbon::now()->format('d-m-y');
+
+        $data['data_nasc'] = $data['data_nasc'] ?? null;
+        $data['telefone'] = $data['telefone'] ?? '';
+        $data['endereco'] = $data['endereco'] ?? '';
+        $data['mensagem'] = $data['mensagem'] ?? '';
+
+        for ($i=1; $i <= 8; $i++) {
+            if (isset($data['info'.$i])) unset($data['info'.$i]);
+        }
+
         $nQuestion = 1;
 
-        foreach ($infos as $info) {
-            OuvidoriaQuestionsResponse::create([
-                'response_id' => $maxId,
-                'n_question' => $nQuestion++,
-                'info' => $info
-            ]);
+        if ($id) {
+            // dd($data);
+            OuvidoriaResponse::where('id', $id)->update($data);
+            OuvidoriaQuestionsResponse::where('response_id', $id)->delete();
+
+            foreach ($infos as $info) {
+                OuvidoriaQuestionsResponse::create([
+                    'response_id' => $id,
+                    'n_question' => $nQuestion++,
+                    'info' => $info
+                ]);
+            }
+
+        } else {
+            OuvidoriaResponse::create($data);
+
+            $maxId = OuvidoriaResponse::max('id');
+
+            foreach ($infos as $info) {
+                OuvidoriaQuestionsResponse::create([
+                    'response_id' => $maxId,
+                    'n_question' => $nQuestion++,
+                    'info' => $info
+                ]);
+            }
         }
 
         return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
