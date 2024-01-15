@@ -41,7 +41,7 @@
         </div>
         <div class="form_message">
             <label for="message" class="form_message_label"> Comentários:</label>
-            <textarea name="mensagem" id="message" cols="30" rows="3" class="form_input message_input">{{$mensagem}}</textarea>
+            <textarea cols="30" rows="3" class="form_input message_input"></textarea>
         </div>
     </div>
 </body>
