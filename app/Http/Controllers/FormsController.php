@@ -83,11 +83,17 @@ class FormsController extends Controller
         $data = $request->except('_token');
 
         $infos = [];
+        $comments = [];
         $count = OuvidoriaQuestions::where('form_id', $data['tipo_form'])->count();
 
         for ($i = 1; $i <= $count; $i++) {
             $key = 'info' . $i;
+            $keyComment = 'comment' . $i;
+
             $infos[$i - 1] = isset($data[$key]) ? $data[$key] : 'não informado';
+            $comments[$i - 1] = isset($data[$keyComment]) ? $data[$keyComment] : '';
+
+            unset($data[$keyComment]);
         }
 
         unset($data['Submit']);
@@ -107,22 +113,25 @@ class FormsController extends Controller
         $data['endereco'] = $data['endereco'] ?? '';
         $data['mensagem'] = $data['mensagem'] ?? '';
 
+        // dd($data);
+
         for ($i=1; $i <= 8; $i++) {
             if (isset($data['info'.$i])) unset($data['info'.$i]);
         }
 
         $nQuestion = 1;
 
+        // dd($data);
         if ($id) {
-            // dd($data);
             OuvidoriaResponse::where('id', $id)->update($data);
             OuvidoriaQuestionsResponse::where('response_id', $id)->delete();
 
-            foreach ($infos as $info) {
+            for ($i = 1; $i <= $count; $i++) {
                 OuvidoriaQuestionsResponse::create([
                     'response_id' => $id,
                     'n_question' => $nQuestion++,
-                    'info' => $info
+                    'info' => $infos[$i - 1],
+                    'comment' => $comments[$i - 1]
                 ]);
             }
 
@@ -131,16 +140,18 @@ class FormsController extends Controller
 
             $maxId = OuvidoriaResponse::max('id');
 
-            foreach ($infos as $info) {
+            for ($i = 1; $i <= $count; $i++) {
                 OuvidoriaQuestionsResponse::create([
                     'response_id' => $maxId,
                     'n_question' => $nQuestion++,
-                    'info' => $info
+                    'info' => $infos[$i - 1],
+                    'comment' => $comments[$i - 1]
                 ]);
             }
+
         }
 
-        return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
+        return redirect('ouvidoria')->with('success', 'Dados enviados com sucesso!');
     }
 
     public function store(Request $request) {
@@ -169,6 +180,7 @@ class FormsController extends Controller
         foreach ($questions as $question) {
             OuvidoriaQuestions::create([
                 'form_id' => $maxFormId,
+                'tipo_question' => 'Padrão',
                 'question' => $question
             ]);
         }

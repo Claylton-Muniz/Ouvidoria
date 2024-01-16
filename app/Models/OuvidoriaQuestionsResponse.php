@@ -10,6 +10,7 @@ class OuvidoriaQuestionsResponse extends Model
     protected $fillable = [
         'response_id',
         'n_question',
-        'info'
+        'info',
+        'comment'
     ];
 }

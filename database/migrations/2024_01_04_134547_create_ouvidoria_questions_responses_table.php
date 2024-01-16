@@ -21,8 +21,16 @@ return new class extends Migration
                 'Regular',
                 'Ruim',
                 'Péssimo',
+                'Sim',
+                'Não',
+                'Limpeza Pública',
+                'Segurança',
+                'Infraestrutura',
+                'Turismo',
+                'Saúde',
                 'Não Informado'
             ])->nullable();
+            $table->string('comment');
             $table->timestamps();
 
             $table->foreign('response_id')->references('id')->on('ouvidoria_responses')->onDelete('cascade');

@@ -9,6 +9,7 @@ class OuvidoriaQuestions extends Model
 {
     protected $fillable = [
         'form_id',
+        'tipo_question',
         'question'
     ];
 }

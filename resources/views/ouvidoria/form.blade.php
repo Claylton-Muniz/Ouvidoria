@@ -24,12 +24,34 @@
             @php $i = 1; @endphp
             @foreach ($questions as $question)
                 @if ($question->form_id == $forms[$typ]->id)
-                    <x-ouvidoria.question
+                    @if ($question->tipo_question == 'Padrão')
+                        <x-ouvidoria.question
                         name="info{{ $i }}"
                         avaliacao="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->info : '' }}"
-                    >
-                        {{ $i++ }} - {{ $question->question }}
-                    </x-ouvidoria.question>
+                        comment="comment{{ $i }}"
+                        commentRes="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->comment : '' }}"
+                        >
+                            {{ $i++ }} - {{ $question->question }}
+                        </x-ouvidoria.question>
+                    @elseif (($question->tipo_question == 'Sim e Não'))
+                        <x-ouvidoria.closedQuestion
+                        name="info{{ $i }}"
+                        avaliacao="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->info : '' }}"
+                        comment="comment{{ $i }}"
+                        commentRes="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->comment : '' }}"
+                        >
+                            {{ $i++ }} - {{ $question->question }}
+                        </x-ouvidoria.closedQuestion>
+                    @else
+                        <x-ouvidoria.serviceQuestion
+                        name="info{{ $i }}"
+                        avaliacao="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->info : '' }}"
+                        comment="comment{{ $i }}"
+                        commentRes="{{ isset($infoQuestions) ? $infoQuestions[$i-1]->comment : '' }}"
+                        >
+                            {{ $i++ }} - {{ $question->question }}
+                        </x-ouvidoria.serviceQuestion>
+                    @endif
                 @endif
             @endforeach
 

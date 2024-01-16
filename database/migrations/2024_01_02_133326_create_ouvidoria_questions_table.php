@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ouvidoria_questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('form_id');
+            $table->enum('tipo_question', ['Padrão', 'Sim e Não', 'Serviço'])->nullable();
             $table->string('question');
             $table->timestamps();
 
