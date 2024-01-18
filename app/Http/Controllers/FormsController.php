@@ -115,11 +115,11 @@ class FormsController extends Controller
         $data['endereco'] = $data['endereco'] ?? '';
         $data['mensagem'] = $data['mensagem'] ?? '';
 
-        // dd($data);
 
-        for ($i=1; $i <= 8; $i++) {
+        for ($i=1; $i <= 15; $i++) {
             if (isset($data['info'.$i])) unset($data['info'.$i]);
         }
+        // dd($data);
 
         $nQuestion = 1;
 
