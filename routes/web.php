@@ -58,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
     Route::post('ouvidoria/forms/store-questions', [FormsController::class, 'storeQuestion'])->name('saveQuestions.form');
 
+    /** API */
+    // Route::get('api', [FormsController::class, 'api']);
+    // Route::post('api', [FormsController::class, 'apiStore']);
 
 });
 

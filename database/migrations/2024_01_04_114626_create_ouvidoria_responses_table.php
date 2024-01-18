@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('servidor');
             $table->string('entrevistado')->nullable();
             $table->unsignedBigInteger('tipo_form');
-            $table->date('data_atual');
             $table->date('data_nasc')->nullable();
             $table->string('email')->nullable();
             $table->string('telefone')->nullable();

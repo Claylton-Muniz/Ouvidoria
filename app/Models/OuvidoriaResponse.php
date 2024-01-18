@@ -11,7 +11,6 @@ class OuvidoriaResponse extends Model
         'servidor',
         'entrevistado',
         'tipo_form',
-        'data_atual',
         'data_nasc',
         'email',
         'telefone',
