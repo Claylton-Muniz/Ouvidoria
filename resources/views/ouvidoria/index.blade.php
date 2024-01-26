@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ $data->servidor }}</td>
                         <td>{{ $forms[$data->tipo_form-1]->nome }}</td>
-                        <td>{{ \Carbon\Carbon::parse($data->data_atual)->format('d/m/Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y') }}</td>
                         <td>{{ $data->entrevistado }}</td>
                         <td>
                             <a href="ouvidoria/form/{{$data->tipo_form-1}}/{{$data->id}}">

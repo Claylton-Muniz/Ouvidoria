@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FormsController;
+use App\Http\Controllers\FormsApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,10 @@ use App\Http\Controllers\FormsController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::get('/', [FormsController::class, 'api']);
-Route::post('/', [FormsController::class, 'apiStore']);
+Route::get('users', [FormsApiController::class, 'users']);
+Route::get('forms', [FormsApiController::class, 'forms']);
+Route::get('questions', [FormsApiController::class, 'questions']);
+Route::get('response', [FormsApiController::class, 'response']);
+Route::post('response', [FormsApiController::class, 'responseStore']);
+Route::get('questions-response', [FormsApiController::class, 'questionResponse']);
 

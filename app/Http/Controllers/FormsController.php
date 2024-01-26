@@ -12,8 +12,6 @@ use App\Models\OuvidoriaQuestions;
 use App\Models\OuvidoriaResponse;
 use App\Models\OuvidoriaQuestionsResponse;
 
-use App\Http\Resources\FormsResource;
-
 class FormsController extends Controller
 {
     /** Páginas */
@@ -188,56 +186,6 @@ class FormsController extends Controller
         }
 
         return redirect('ouvidoria/forms')->with('success', 'Dados enviados com sucesso!');
-    }
-
-    /** Api */
-    public function api() {
-        $data = OuvidoriaResponse::all();
-
-        return FormsResource::collection($data);
-    }
-
-    public function apiStore(StoreApiRequest $request) {
-        $forms = $request->all();
-        $questionsResponse = $forms['respostas'];
-
-        unset($forms['respostas']);
-
-        $info = [
-            "servidor" => $forms['servidor'],
-            "entrevistado" => $questionsResponse[0]['respostaAberta'],
-            "tipo_form" => $forms['idFormulario'],
-            "endereco" => $questionsResponse[1]['respostaAberta'],
-            "data_nasc" => null, //modificar depois
-            "email" => $questionsResponse[3]['respostaAberta'],
-            "telefone" => "",
-            "sexo" => $questionsResponse[4]['respostaFechada'][0],
-            "mensagem" => null
-        ];
-
-        for ($i = 5; $i < count($questionsResponse); $i++) {
-            $data[] = $questionsResponse[$i];
-        }
-
-        $count = OuvidoriaQuestions::where('form_id', $info['tipo_form'])->count();
-        $maxId = OuvidoriaResponse::max('id');
-        $nQuestion = 1;
-
-        for ($i = 1; $i <= $count; $i++) {
-            $questions[] = [
-                'response_id' => $maxId,
-                'n_question' => $nQuestion++,
-                'info' => $data[$i - 1]['respostaFechada'][0],
-                'comment' => $data[$i - 1]['respostaAberta']
-            ];
-        }
-
-        $form = OuvidoriaResponse::create($info);
-        foreach ($questions as $question) {
-            OuvidoriaQuestionsResponse::create($question);
-        }
-
-        return new FormsResource($form);
     }
 
 }
