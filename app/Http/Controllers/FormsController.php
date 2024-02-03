@@ -162,20 +162,28 @@ class FormsController extends Controller
 
         $data = $request->except('_token');
 
-        OuvidoriaForms::create($data);
+        // Verifica se a chave 'icon' existe no array $data
+        $iconParam = isset($data['icon']) ? '&icon=' . urlencode($data['icon']) : '';
 
-        return redirect('ouvidoria/forms/questions')->with('success', 'Dados enviados com sucesso!');
+        return redirect('ouvidoria/forms/questions?nome=' . urlencode($data['nome']) . $iconParam)->with('success', 'Dados enviados com sucesso!');
     }
 
     public function storeQuestion(Request $request) {
+
         $request->validate([
             'question.*' => 'required|string'
+        ]);
+
+        $nome = $request->input('nome');
+        
+        OuvidoriaForms::create([
+            'nome' => $nome,
+            'icon' => null
         ]);
 
         $maxFormId = OuvidoriaForms::max('id');
 
         $questions = $request->input('question');
-        // dd($questions);
 
         foreach ($questions as $question) {
             OuvidoriaQuestions::create([

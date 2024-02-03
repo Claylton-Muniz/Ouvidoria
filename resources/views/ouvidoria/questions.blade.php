@@ -9,9 +9,11 @@
 @section('content')
     <h1 class="h3 mb-2 text-gray-800">Criar Formulário</h1>
 
-    @if (request()->has('num-questions'))
+    @if (request()->has('num-questions') && request()->has('nome'))
         <form action="{{ route('saveQuestions.form') }}" method="post">
             @csrf
+
+            <input type="hidden" name="nome" value="{{ request('nome') }}" id="nome">
 
             <div class="container_form">
                 @php
@@ -36,6 +38,7 @@
         </form>
     @else
             <form>
+                <input type="hidden" name="nome" value="{{ request('nome') }}" id="nome">
                 <div class="quant">
                     <input class="button-inc" id="decrement" type="button" onclick="stepper(this)" value="-">
                     <input type="number" name="num-questions" min="1" max="15" step="1" value="1" id="num-questions" readonly>

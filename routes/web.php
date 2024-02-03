@@ -43,10 +43,10 @@ Route::middleware('auth')->group(function () {
     /** Ouvidoria */
 
     /** Index */
-    Route::get('ouvidoria', [FormsController::class, 'index']);
+    Route::get('ouvidoria', [FormsController::class, 'index'])->name('ouvidoria.index');
 
     /** Forms */
-    Route::get('ouvidoria/forms', [FormsController::class, 'forms']);
+    Route::get('ouvidoria/forms', [FormsController::class, 'forms'])->name('ouvidoria.forms');
     Route::get('ouvidoria/form/{typ}/{id}', [FormsController::class, 'form']);
 
     /** Create Forms */

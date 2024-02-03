@@ -67,8 +67,23 @@
                     APLICAÇÃO
                 </div>
 
-                
-                
+                <!-- Nav Item - Ouvidoria -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOuvidoria" aria-expanded="true" aria-controls="collapseOuvidoria">
+                        <i class="fas fa-duotone fa-bullhorn"></i>
+                        <span>Ouvidoria</span>
+                    </a>
+
+                    <div id="collapseOuvidoria" class="{{ request()->routeIs(['ouvidoria.index', 'ouvidoria.forms']) ? 'collapse show' : 'collapse' }}" aria-labelledby="headingBudget" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item {{ isActive('ouvidoria.index') }}" href="{{ route('ouvidoria.index') }}">Ouvidoria</a>
+                            <a class="collapse-item {{ isActive('ouvidoria.forms') }}" href="{{ route('ouvidoria.forms') }}">Formulários</a>
+                        </div>
+                    </div>
+                </li>
+
+
+
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -84,17 +99,17 @@
                         <i class="fas fa-fw fa-users"></i>
                         <span>Usuários</span>
                     </a>
-                    
+
                     <div id="collapseUser" class="{{ request()->routeIs(['users.index', 'users.create']) ? 'collapse show' : 'collapse' }}" aria-labelledby="headingBudget" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item {{ isActive('users.index') }}" href="{{ route('users.index') }}">Usuários</a>
                             <a class="collapse-item {{isActive('roles.index')}}" href="{{route('roles.index')}}">Perfis de Usuário</a>
                             <a class="collapse-item {{isActive('permissions.index')}}" href="{{route('permissions.index')}}">Permissões</a>
-                            
+
                         </div>
                     </div>
                 </li>
-                
+
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
@@ -220,7 +235,7 @@
         <!-- Page level plugin Select2 -->
         <script src="{{ asset('build/assets/sb-admin-2/vendor/select2/js/select2.min.js') }}"></script>
         @vite('resources/js/app.js')
-        
+
 
         @hasSection ('js')
             @yield('js')
