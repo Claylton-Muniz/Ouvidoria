@@ -79,10 +79,11 @@ class FormsApiController extends Controller
         $count = OuvidoriaQuestions::where('form_id', $info['tipo_form'])->count();
 
         $nQuestion = 1;
+        $maxId = OuvidoriaResponse::max('id');
 
         for ($i = 1; $i <= $count; $i++) {
             $questions[] = [
-                'response_id' => $forms['id'],
+                'response_id' => $maxId + 1,
                 'n_question' => $nQuestion++,
                 'info' => $data[$i - 1]['respostaFechada'][0],
                 'comment' => $data[$i - 1]['respostaAberta']
