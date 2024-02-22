@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ACL\RoleController;
 use App\Http\Controllers\ACL\PermissionController;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,34 @@ Route::middleware('auth')->group(function () {
     Route::get('roles/load', [RoleController::class, 'loadDataTable'])->name('roles.load');
     Route::get('roles/{role}/permissions', [RoleController::class, 'permissions'])->name('roles.permissions');
     Route::put('roles/{role}/permissions/sync', [RoleController::class, 'permissionsSync'])->name('roles.permissionsSync');
-    Route::resource('roles', RoleController::class);    
+    Route::resource('roles', RoleController::class);
+
     /** Permissões */
     Route::get('permissions/load', [PermissionController::class, 'loadDataTable'])->name('permissions.load');
     Route::resource('permissions', PermissionController::class);
+
+    /** Ouvidoria */
+
+    /** Index */
+    Route::get('ouvidoria', [FormsController::class, 'index'])->name('ouvidoria.index');
+
+    /** Forms */
+    Route::get('ouvidoria/forms', [FormsController::class, 'forms'])->name('ouvidoria.forms');
+    Route::get('ouvidoria/form/{typ}/{id}', [FormsController::class, 'form']);
+
+    /** Create Forms */
+    Route::get('ouvidoria/forms/create', [FormsController::class, 'create']);
+    Route::get('ouvidoria/forms/questions', [FormsController::class, 'questions']);
+
+    /** Send forms */
+    Route::post('ouvidoria/forms/save', [FormsController::class, 'save'])->name('send.form');
+    Route::post('ouvidoria/forms/store', [FormsController::class, 'store'])->name('create.form');
+    Route::post('ouvidoria/forms/store-questions', [FormsController::class, 'storeQuestion'])->name('saveQuestions.form');
+
+    /** API */
+    // Route::get('api', [FormsController::class, 'api']);
+    // Route::post('api', [FormsController::class, 'apiStore']);
+
 });
 
 require __DIR__.'/auth.php';

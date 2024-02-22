@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormsApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('users', [FormsApiController::class, 'users']);
+Route::get('forms', [FormsApiController::class, 'forms']);
+Route::get('questions', [FormsApiController::class, 'questions']);
+Route::get('response', [FormsApiController::class, 'response']);
+Route::post('response', [FormsApiController::class, 'responseStore']);
+Route::get('questions-response', [FormsApiController::class, 'questionResponse']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
