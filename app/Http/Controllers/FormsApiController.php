@@ -59,7 +59,7 @@ class FormsApiController extends Controller
         $questionsResponse = $forms['respostas'];
 
         unset($forms['respostas']);
-
+        // dd($questionsResponse);
         $info = [
             "servidor" => $forms['servidor'],
             "entrevistado" => $questionsResponse[0]['respostaAberta'],
@@ -71,6 +71,7 @@ class FormsApiController extends Controller
             "sexo" => $questionsResponse[4]['respostaFechada'][0],
             "mensagem" => null
         ];
+
 
         for ($i = 5; $i < count($questionsResponse); $i++) {
             $data[] = $questionsResponse[$i];
@@ -86,7 +87,7 @@ class FormsApiController extends Controller
                 'response_id' => $maxId + 1,
                 'n_question' => $nQuestion++,
                 'info' => $data[$i - 1]['respostaFechada'][0],
-                'comment' => $data[$i - 1]['respostaAberta']
+                'comment' => $data[$i - 1]['respostaAberta'] ?? ''
             ];
         }
 
